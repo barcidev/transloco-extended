@@ -1,12 +1,17 @@
 {
   "name": "transloco-extended",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:typed": "ng build typed-transloco",
+    "build:schematics": "tsc -p projects/typed-transloco/schematics/tsconfig.schematics.json",
+    "copy:schematics": "cp projects/typed-transloco/schematics/collection.json dist/typed-transloco/schematics/ && cp -r projects/typed-transloco/schematics/ng-add/schema.json dist/typed-transloco/schematics/ng-add/ 2>/dev/null || :",
+    "prepare:release": "npm run build:typed && npm run build:schematics && npm run copy:schematics",
+    "release": "npm run prepare:release && cd dist/typed-transloco && npm publish --access public"
   },
   "prettier": {
     "printWidth": 100,
@@ -23,18 +28,26 @@
   "private": true,
   "packageManager": "npm@11.7.0",
   "dependencies": {
+    "@angular-devkit/schematics": "^21.2.1",
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
     "@angular/core": "^21.1.0",
     "@angular/forms": "^21.1.0",
     "@angular/platform-browser": "^21.1.0",
     "@angular/router": "^21.1.0",
+    "@jsverse/transloco": "^8.2.1",
+    "@schematics/angular": "^21.2.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@angular/build": "^21.2.0",
     "@angular/cli": "^21.1.2",
     "@angular/compiler-cli": "^21.1.0",
-    "typescript": "~5.9.2"
+    "@types/node": "^25.3.3",
+    "jsdom": "^28.0.0",
+    "ng-packagr": "^21.2.0",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
   }
 }
