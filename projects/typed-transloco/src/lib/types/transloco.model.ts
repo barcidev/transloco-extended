@@ -9,11 +9,12 @@ export type TranslationPagesKeys<T, K extends keyof T> = PathKeys<T[K]> | (strin
 
 export interface TranslationScopeConfig<T = Translation, U = string> {
   alias?: string;
+  keys: NestedKeys<T>;
   scope: U;
   translations: ConfigTranslation<T>;
 }
 
-type PathKeys<T> = T extends object
+export type PathKeys<T> = T extends object
   ? {
       [K in keyof T]: K extends number | string
         ?
@@ -26,3 +27,11 @@ type PathKeys<T> = T extends object
         : never;
     }[keyof T]
   : never;
+
+export type NestedKeys<T, Prefix extends string = ''> = {
+  [K in keyof T]: T[K] extends string
+    ? `${Prefix}${K & string}`
+    : NestedKeys<T[K], `${Prefix}${K & string}.`>;
+};
+
+export type Transalations<T> = Record<AppLanguageCode, T extends object ? T : never>;

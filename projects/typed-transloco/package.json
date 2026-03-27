@@ -1,6 +1,6 @@
 {
   "name": "@barcidev/typed-transloco",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "schematics": "./schematics/collection.json",
   "peerDependencies": {
     "@angular/common": ">=20.0.0 <22.0.0",
