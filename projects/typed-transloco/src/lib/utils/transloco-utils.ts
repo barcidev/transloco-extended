@@ -1,4 +1,4 @@
-import { NestedKeys, Transalations, TranslationScopeConfig } from './transloco.model';
+import { NestedKeys, Transalations, TranslationScopeConfig } from '../types/transloco.model';
 
 export class TranslocoUtils {
   static createKeys<T extends object>(obj: T, prefix = ''): NestedKeys<T> {
