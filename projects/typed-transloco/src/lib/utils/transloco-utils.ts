@@ -13,10 +13,10 @@ export class TranslocoUtils {
     ) as NestedKeys<T>;
   }
 
-  static createScopeConfig<T extends object>(
-    scope: string,
+  static createScopeConfig<T extends object, U extends string>(
+    scope: U,
     translations: Transalations<T>,
-  ): TranslationScopeConfig<T, string> {
+  ): TranslationScopeConfig<T, U> {
     return {
       keys: this.createKeys(translations['en-US']),
       scope,
