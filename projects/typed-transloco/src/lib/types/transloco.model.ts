@@ -3,9 +3,12 @@ import { Translation } from '@jsverse/transloco';
 export type AppLanguageCode = 'en-US' | 'es-CO';
 
 export type ConfigTranslation<T> = Record<string, T>;
+export interface AppTranslations {
+  // Las aplicaciones consumidoras deben extender esta interfaz mediante module augmentation
+}
 
-export type TranslationKeys<T> = PathKeys<T> | (string & {});
-export type TranslationPagesKeys<T, K extends keyof T> = PathKeys<T[K]> | (string & {});
+export type TranslationKeys<T> = PathKeys<T>;
+export type TranslationPagesKeys<T, K extends keyof T> = PathKeys<T[K]>;
 
 export interface TranslationScopeConfig<T = Translation, U = string> {
   alias?: string;

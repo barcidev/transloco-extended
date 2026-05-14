@@ -41,7 +41,7 @@ function setupGlobalConfig(project: string, root: string): Rule {
     return addRootProvider(
       project,
       ({ code, external }) => code`
-      ${external('provideTransloco', '@jsverse/transloco')}({
+      ${external('provideTransloco', '@barcidev/typed-transloco')}({
         config: {
           availableLangs: ['en-US', 'es-CO'],
           defaultLang: 'en-US',
@@ -62,44 +62,16 @@ function createI18nFiles(root: string): Rule {
 
     const files = [
       {
-        path: `${i18nPath}/app-typed-transloco.directive.ts`,
-        content: `import { Directive } from '@angular/core';
-import { TypedTranslocoDirective, TypedViewContext } from '@barcidev/typed-transloco';
-import { AppI18nType } from './app.i18n';
-
-@Directive({
-  selector: '[typedTransloco]',
-  standalone: true,
-})
-export class AppTypedTranslocoDirective<
-  T extends keyof AppI18nType = keyof AppI18nType,
-> extends TypedTranslocoDirective<T> {
-  static override ngTemplateContextGuard<T extends keyof AppI18nType>(
-    dir: TypedTranslocoDirective<T>,
-    ctx: any,
-  ): ctx is TypedViewContext<T extends keyof AppI18nType ? AppI18nType[T] : AppI18nType> {
-    return true;
-  }
-}`,
-      },
-      {
-        path: `${i18nPath}/app-typed-transloco.pipe.ts`,
-        content: `import { Pipe } from '@angular/core';
-import { TypedTranslocoPipe } from '@barcidev/typed-transloco';
-import { AppI18nType } from './app.i18n';
-
-@Pipe({
-  name: 'typedTransloco',
-  standalone: true,
-  pure: false,
-})
-export class AppTypedTranslocoPipe extends TypedTranslocoPipe<AppI18nType> {}`,
-      },
-      {
         path: `${i18nPath}/app.i18n.ts`,
-        content: `export const appI18n = {};
+        content: `import '@barcidev/typed-transloco';
+
+export const appI18n = {};
 export type AppI18nType = typeof appI18n;
-export type AppLanguageCode = 'en-US' | 'es-CO';`,
+export type AppLanguageCode = 'en-US' | 'es-CO';
+
+declare module '@barcidev/typed-transloco' {
+  export interface AppTranslations extends AppI18nType {}
+}`,
       },
     ];
 

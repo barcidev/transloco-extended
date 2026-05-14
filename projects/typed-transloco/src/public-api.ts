@@ -8,3 +8,4 @@ export * from './lib/types/transloco-loader';
 export * from './lib/types/transloco-wrapper';
 export * from './lib/types/transloco.model';
 export * from './lib/utils/transloco-utils';
+export * from '@jsverse/transloco';

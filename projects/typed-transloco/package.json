@@ -1,13 +1,13 @@
 {
   "name": "@barcidev/typed-transloco",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "schematics": "./schematics/collection.json",
   "peerDependencies": {
     "@angular/common": ">=20.0.0 <22.0.0",
-    "@angular/core": ">=20.0.0 <22.0.0",
-    "@jsverse/transloco": "^8.2.0"
+    "@angular/core": ">=20.0.0 <22.0.0"
   },
   "dependencies": {
+    "@jsverse/transloco": "^8.2.0",
     "tslib": "^2.3.0"
   },
   "publishConfig": {

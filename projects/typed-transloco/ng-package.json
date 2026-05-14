@@ -3,5 +3,8 @@
   "dest": "../../dist/typed-transloco",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@jsverse/transloco"
+  ]
 }
